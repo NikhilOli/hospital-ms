@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 export async function POST(request) {
     try {
         const data = await request.json();
-        const { email, password, fullname, phone, role, gender, address, appointmentTime, doctorassigned } = data;
+        const { email, password, fullname, phone, role, gender, address, appointmentTime, doctorAssigned } = data;
 
         if (!email || !password) {
             return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
@@ -23,7 +23,7 @@ export async function POST(request) {
                 gender,
                 address,
                 appointmentTime: appointmentTime ? new Date(appointmentTime) : null,
-                doctorassigned,
+                doctorAssigned: doctorAssigned ? { connect: { id: doctorAssigned } } : undefined,
             },
         });
 
@@ -31,5 +31,15 @@ export async function POST(request) {
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: 'Failed to create user' }, { status: 500 });
+    }
+}
+
+export async function GET() {
+    try {
+        const users = await prisma.user.findMany();
+        return NextResponse.json(users);
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to fetch users' }, { status: 500 });
     }
 }

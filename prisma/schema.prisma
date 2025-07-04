@@ -25,7 +25,8 @@ model User {
   gender   Gender     @default(MALE)
   address String?
   appointmentTime DateTime?
-  doctorAssigned    Int?  // stores doctor id from dummy list
+  doctorAssignedId Int?
+  doctorAssigned   Doctor?   @relation("DoctorToUser", fields: [doctorAssignedId], references: [id])
   createdAt DateTime @default(now())
 }
 
@@ -37,4 +38,11 @@ enum Gender {
   MALE
   FEMALE
   OTHER
+}
+model Doctor {
+  id             Int     @id @default(autoincrement())
+  name           String
+  department     String
+  specialization String
+  users          User[]  @relation("DoctorToUser")
 }
