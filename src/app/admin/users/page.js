@@ -23,7 +23,7 @@ import {
 
 export default function AdminUserForm() {
   const [doctors, setDoctors] = useState([]);
-  
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -58,7 +58,7 @@ export default function AdminUserForm() {
       toast.error('Email and password are required');
       return;
     }
-
+    setLoading(true);
     const res = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,6 +81,7 @@ export default function AdminUserForm() {
         appointmentTime: '',
         doctorAssigned: '',
       });
+      setLoading(false);
       router.push('/admin');
       toast.success('User created successfully');
 
@@ -219,7 +220,7 @@ export default function AdminUserForm() {
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg cursor-pointer"
             >
-              Create User
+              { loading ? "Creating User..." : "Create User"}
             </Button>
           </form>
         </CardContent>

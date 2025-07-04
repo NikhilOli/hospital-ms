@@ -37,8 +37,14 @@ export default function UserList() {
                 <p className="text-sm text-muted-foreground">Email: {user.email}</p>
                 <p className="text-sm text-muted-foreground">Role: {user.role}</p>
                 {user.doctorAssigned && (
-                <p className="text-sm text-muted-foreground">Doctor ID: {user.doctorAssigned}</p>
+                    <div className="text-sm text-muted-foreground">
+                        <div>Doctor: {user.doctorAssigned.name}</div>
+                        <div>Department: {user.doctorAssigned.department}</div>
+                        <div>Specialization: {user.doctorAssigned.specialization}</div>
+                    </div>
                 )}
+
+
             </CardContent>
             </Card>
         ))}
