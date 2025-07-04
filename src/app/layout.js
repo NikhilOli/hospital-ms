@@ -28,10 +28,10 @@ export default function RootLayout({ children }) {
       >
         <div className="flex flex-col min-h-screen">
           <Navbar />
-            {children}
-          <Toaster position="top-center" richColors />
-        </div>
+            <main className="flex-1">{children}</main>
           <Footer />
+        </div>
+          <Toaster position="top-center" richColors />
       </body>
     </html>
   );
