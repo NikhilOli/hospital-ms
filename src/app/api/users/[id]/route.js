@@ -19,3 +19,36 @@ export async function GET(req, {params}) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
+
+export async function PUT(req, { params }) {
+    const id = parseInt(params.id);
+    const data = await req.json();
+    try {
+        const updatedUser = await prisma.user.update({
+        where: { id },
+        data: {
+            fullname: data.fullname,
+            phone: data.phone,
+            gender: data.gender,
+            address: data.address,
+            appointmentTime: data.appointmentTime ? new Date(data.appointmentTime) : null,
+            doctorAssigned: data.doctorAssigned ? { connect: { id: data.doctorAssigned } } : undefined,
+        },
+        });
+        return NextResponse.json(updatedUser);
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to update user' }, { status: 500 });
+    }
+}
+
+export async function DELETE(req, { params }) {
+    const id = parseInt(params.id);
+    try {
+        await prisma.user.delete({ where: { id } });
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to delete user' }, { status: 500 });
+    }
+}

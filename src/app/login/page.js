@@ -34,7 +34,9 @@ export default function LoginPage() {
         e.preventDefault();
 
         if (role === 'ADMIN') {
-            if (form.email === 'admin@hospital.com' && form.password === '1234') {
+            if (form.email === 'admin@hospital.com' && form.password === 'admin123') {
+                localStorage.setItem('role', 'ADMIN');
+                window.dispatchEvent(new Event("storage"));
                 toast("Admin logged in!", { description: "Redirecting to dashboard..." });
                 router.push('/admin');
             } else {
@@ -51,6 +53,9 @@ export default function LoginPage() {
                 toast("Please select a doctor", { variant: "destructive" });
                 return;
             }
+            localStorage.setItem('role', 'DOCTOR');
+            localStorage.setItem('doctorId', form.doctorId); // ✅ save doctor id
+            window.dispatchEvent(new Event("storage"));
             toast("Doctor logged in!", { description: "Redirecting..." });
             router.push(`/doctors/${form.doctorId}`);
             return;
@@ -64,6 +69,9 @@ export default function LoginPage() {
             });
             const data = await res.json();
             if (data.success && data.role === 'USER') {
+                localStorage.setItem('role', 'USER');
+                localStorage.setItem('userId', data.userId); // ✅ save user id
+                window.dispatchEvent(new Event("storage"));
                 toast("User logged in!", { description: "Welcome!" });
                 router.push(`/users/${data.userId}`);
             } else {
@@ -74,6 +82,8 @@ export default function LoginPage() {
             }
         }
     };
+
+
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50">

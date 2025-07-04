@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 import {
   Card,
@@ -12,11 +13,17 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 export default function AdminUserForm() {
   const [doctors, setDoctors] = useState([]);
+  
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -28,6 +35,7 @@ export default function AdminUserForm() {
     appointmentTime: '',
     doctorAssigned: '',
   });
+    const router = useRouter();
 
   useEffect(() => {
     fetch('/api/doctors')
@@ -73,7 +81,8 @@ export default function AdminUserForm() {
         appointmentTime: '',
         doctorAssigned: '',
       });
-        toast.success('User created successfully');
+      router.push('/admin');
+      toast.success('User created successfully');
 
     } else {
       const error = await res.json();
@@ -82,85 +91,139 @@ export default function AdminUserForm() {
   };
 
   return (
-    <Card className="max-w-xl mx-auto p-6 mt-10 shadow-md">
-      <CardHeader>
-        <CardTitle>Create User</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="grid gap-4">
-
-          <div>
-            <Label>Email*</Label>
-            <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
-          </div>
-
-          <div>
-            <Label>Password*</Label>
-            <Input type="password" name="password" value={formData.password} onChange={handleChange} required />
-          </div>
-
-          <div>
-            <Label>Full Name</Label>
-            <Input name="fullname" value={formData.fullname} onChange={handleChange} />
-          </div>
-
-          <div>
-            <Label>Phone</Label>
-            <Input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
-          </div>
-
-          <div>
-            <Label>Role</Label>
-            <Select value={formData.role} onValueChange={(value) => handleSelectChange('role', value)}>
-              <SelectTrigger><SelectValue placeholder="Select Role" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="USER">User</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label>Gender</Label>
-            <Select value={formData.gender} onValueChange={(value) => handleSelectChange('gender', value)}>
-              <SelectTrigger><SelectValue placeholder="Select Gender" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="MALE">Male</SelectItem>
-                <SelectItem value="FEMALE">Female</SelectItem>
-                <SelectItem value="OTHER">Other</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label>Address</Label>
-            <Input name="address" value={formData.address} onChange={handleChange} />
-          </div>
-
-          <div>
-            <Label>Appointment Time</Label>
-            <Input type="datetime-local" name="appointmentTime" value={formData.appointmentTime} onChange={handleChange} />
-          </div>
-
-          <div>
-            <Label>Assign Doctor</Label>
-            <select
-              name="doctorAssigned"
-              value={formData.doctorAssigned}
-              onChange={handleChange}
-              className="w-full rounded-md border border-input bg-background p-2 text-sm"
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50 px-4">
+      <Card className="w-full max-w-lg shadow-xl border-0">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-2xl font-bold text-center text-blue-700">
+            Create New User
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email*</Label>
+              <Input
+                id="email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="off"
+                placeholder="user@example.com"
+                required
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">Password*</Label>
+              <Input
+                id="password"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                autoComplete="new-password"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="fullname">Full Name</Label>
+              <Input
+                id="fullname"
+                name="fullname"
+                value={formData.fullname}
+                onChange={handleChange}
+                placeholder="Full name"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="phone">Phone</Label>
+              <Input
+                id="phone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="98XXXXXXXX"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="role">Role</Label>
+              <Select
+                value={formData.role}
+                onValueChange={(value) => handleSelectChange('role', value)}
+              >
+                <SelectTrigger id="role">
+                  <SelectValue placeholder="Select role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="USER">User</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="gender">Gender</Label>
+              <Select
+                value={formData.gender}
+                onValueChange={(value) => handleSelectChange('gender', value)}
+              >
+                <SelectTrigger id="gender">
+                  <SelectValue placeholder="Select gender" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="MALE">Male</SelectItem>
+                  <SelectItem value="FEMALE">Female</SelectItem>
+                  <SelectItem value="OTHER">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="address">Address</Label>
+              <Input
+                id="address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                placeholder="Address"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="appointmentTime">Appointment Time</Label>
+              <Input
+                id="appointmentTime"
+                type="datetime-local"
+                name="appointmentTime"
+                value={formData.appointmentTime}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="doctorAssigned">Assign Doctor</Label>
+              <Select
+                value={formData.doctorAssigned}
+                onValueChange={(value) => handleSelectChange('doctorAssigned', value)}
+              >
+                <SelectTrigger id="doctorAssigned">
+                  <SelectValue placeholder="Select doctor" />
+                </SelectTrigger>
+                <SelectContent>
+                  {doctors.map((doc) => (
+                    <SelectItem key={doc.id} value={doc.id.toString()}>
+                      {doc.name} — {doc.department} ({doc.specialization})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg cursor-pointer"
             >
-              <option value="">Select Doctor</option>
-              {doctors.map((doc) => (
-                <option key={doc.id} value={doc.id}>
-                  {doc.name} - {doc.department} ({doc.specialization})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <Button type="submit" className="mt-2 w-full cursor-pointer">Create User</Button>
-        </form>
-      </CardContent>
-    </Card>
+              Create User
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

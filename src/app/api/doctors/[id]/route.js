@@ -18,3 +18,14 @@ export async function GET(request, { params }) {
         return NextResponse.json({ error: 'Failed to fetch doctor' }, { status: 500 });
     }
 }
+
+export async function DELETE(req, { params }) {
+    const id = parseInt(params.id);
+    try {
+        await prisma.doctor.delete({ where: { id } });
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to delete doctor' }, { status: 500 });
+    }
+}

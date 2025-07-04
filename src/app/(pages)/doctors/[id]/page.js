@@ -29,7 +29,7 @@ export default function DoctorPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100/10 px-4">
         <Card className="w-full max-w-md p-6 shadow-lg">
             <CardHeader>
             <CardTitle className="text-2xl font-semibold">
