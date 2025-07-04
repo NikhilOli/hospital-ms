@@ -115,8 +115,6 @@ export default function AdminUserForm() {
               <SelectTrigger><SelectValue placeholder="Select Role" /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="USER">User</SelectItem>
-                <SelectItem value="DOCTOR">Doctor</SelectItem>
-                <SelectItem value="ADMIN">Admin</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -160,7 +158,7 @@ export default function AdminUserForm() {
             </select>
           </div>
 
-          <Button type="submit" className="mt-2 w-full">Create User</Button>
+          <Button type="submit" className="mt-2 w-full cursor-pointer">Create User</Button>
         </form>
       </CardContent>
     </Card>
