@@ -1,0 +1,15 @@
+[
+    {
+        "id": 4,
+        "name": "Dr. Bikash Adhikari",
+        "department": "Orthopedics",
+        "specialization": "Bone & Joint Specialist"
+    },
+    {
+        "id": 5,
+        "name": "Dr. Anuja Thapa",
+        "department": "Gynecology",
+        "specialization": "Women's Health"
+    }
+]
+

@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@prisma/client':
+        specifier: 6.11.1
+        version: 6.11.1(prisma@6.11.1(typescript@5.8.3))(typescript@5.8.3)
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(react@19.1.0)
+      bcryptjs:
+        specifier: ^3.0.2
+        version: 3.0.2
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -341,6 +347,18 @@ packages:
   '@nolyfill/is-core-module@1.0.39':
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
+
+  '@prisma/client@6.11.1':
+    resolution: {integrity: sha512-5CLFh8QP6KxRm83pJ84jaVCeSVPQr8k0L2SEtOJHwdkS57/VQDcI/wQpGmdyOZi+D9gdNabdo8tj1Uk+w+upsQ==}
+    engines: {node: '>=18.18'}
+    peerDependencies:
+      prisma: '*'
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+      typescript:
+        optional: true
 
   '@prisma/config@6.11.1':
     resolution: {integrity: sha512-z6rCTQN741wxDq82cpdzx2uVykpnQIXalLhrWQSR0jlBVOxCIkz3HZnd8ern3uYTcWKfB3IpVAF7K2FU8t/8AQ==}
@@ -721,6 +739,10 @@ packages:
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+
+  bcryptjs@3.0.2:
+    resolution: {integrity: sha512-k38b3XOZKv60C4E2hVsXTolJWfkGRMbILBIe2IBITXciy5bOsTKot5kDrf3ZfufQtQOUN5mXceUEpU1rTl9Uog==}
+    hasBin: true
 
   brace-expansion@1.1.12:
     resolution: {integrity: sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==}
@@ -2098,6 +2120,11 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
+  '@prisma/client@6.11.1(prisma@6.11.1(typescript@5.8.3))(typescript@5.8.3)':
+    optionalDependencies:
+      prisma: 6.11.1(typescript@5.8.3)
+      typescript: 5.8.3
+
   '@prisma/config@6.11.1':
     dependencies:
       jiti: 2.4.2
@@ -2477,6 +2504,8 @@ snapshots:
   axobject-query@4.1.0: {}
 
   balanced-match@1.0.2: {}
+
+  bcryptjs@3.0.2: {}
 
   brace-expansion@1.1.12:
     dependencies:
