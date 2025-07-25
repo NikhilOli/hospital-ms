@@ -12,7 +12,7 @@ export default function About() {
             </div>
             <div className="flex-1 flex justify-center">
             <img
-                src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=500&q=80"
+                src="https://images.pexels.com/photos/4031320/pexels-photo-4031320.jpeg"
                 alt="About HospitalMS"
                 className="rounded-xl shadow-lg w-full max-w-xs object-cover"
             />
