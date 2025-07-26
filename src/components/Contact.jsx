@@ -32,7 +32,7 @@ export default function Contact() {
                     placeholder="Your message..."
                     ></textarea>
                 </div>
-                <Button type="submit" className="w-full text-lg">Send Message</Button>
+                <Button type="submit" className="w-full text-lg cursor-pointer">Send Message</Button>
                 </form>
             </CardContent>
             </Card>

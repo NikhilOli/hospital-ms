@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -18,7 +19,7 @@ export default function Hero() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-6">
             Efficient patient management, doctor scheduling, and more — all in one place.
             </p>
-            <Button className="text-lg px-6 py-3 shadow-lg">Get Started</Button>
+            <Link href="/login"><Button className="text-lg px-6 py-3 shadow-lg cursor-pointer">Get Started</Button></Link>
         </motion.div>
         <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
