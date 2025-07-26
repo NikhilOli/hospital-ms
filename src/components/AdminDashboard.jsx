@@ -9,6 +9,7 @@ import EditUserModal from '@/components/EditUserModal';
 export default function AdminDashboard() {
     const [users, setUsers] = useState([]);
     const [doctors, setDoctors] = useState([]);
+    const [isLoading, setLoading] = useState(true);
     const [editingUser, setEditingUser] = useState(null);
 
     const fetchData = async () => {
@@ -20,6 +21,7 @@ export default function AdminDashboard() {
         const doctorsData = await doctorsRes.json();
         setUsers(usersData);
         setDoctors(doctorsData);
+        setLoading(false)
     };
 
     useEffect(() => {
@@ -51,7 +53,12 @@ export default function AdminDashboard() {
     };
 
     return (
-        <div className="p-6 space-y-10">
+        isLoading ? (
+            <div className="flex items-center justify-center h-screen">
+                <div className="text-lg text-gray-500">Loading... It might take some time</div>
+            </div>
+        ) : (
+            <div className="p-6 space-y-10">
             <h1 className="text-3xl font-bold text-center">Admin Dashboard</h1>
 
             <section>
@@ -105,5 +112,6 @@ export default function AdminDashboard() {
                 />
             )}
         </div>
+        )
     );
 }

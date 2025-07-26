@@ -20,11 +20,11 @@ You can test the app using the following credentials:
 
 ### 👨‍💼 Admin Login
 - **Email**: `admin@hospitalms.com`
-- **Password**: `admin123`
+- **Password**: `Admin@123`
 
 ### 👤 User Login
-- **Email**: `user1@gmail.com`
-- **Password**: `user123`
+- **Email**: `nikhiloli107@gmail.com`
+- **Password**: `1234`
 
 ### 👨‍⚕️ Doctor Login
 - Select a doctor from the dropdown (no password required)

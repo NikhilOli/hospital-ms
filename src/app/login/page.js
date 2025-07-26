@@ -34,7 +34,7 @@ export default function LoginPage() {
         e.preventDefault();
 
         if (role === 'ADMIN') {
-            if (form.email === 'admin@hospital.com' && form.password === 'admin123') {
+            if (form.email === 'admin@hospitalms.com' && form.password === 'Admin@123') {
                 localStorage.setItem('role', 'ADMIN');
                 window.dispatchEvent(new Event("storage"));
                 toast("Admin logged in!", { description: "Redirecting to dashboard..." });
